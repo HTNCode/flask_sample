@@ -6,7 +6,9 @@
 {% endblock %}
 
 {% block content%}
-<p>{{ post_id }}ページ目</p>
+<p>{{ show_id }}ページ目</p>
 {% endblock %}
 
-{% block footer%}{% endblock %}
+{% block footer %}
+ {{super()}} <!--super()で親テンプレートの内容を引き継いで表示できる-->
+{% endblock %}

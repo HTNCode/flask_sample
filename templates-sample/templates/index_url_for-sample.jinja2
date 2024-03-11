@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}TOP{% endblock %}
+
+{% block header%}
+<h1>ユーザーページ</h1>
+{% endblock %}
+
+{% block content %}
+<a href="{{ url_for('user') }}">ユーザーページへ</a> <!-- url_for('user')でuser関数を呼び出す -->
+<br />
+<a href="{{ url_for('post') }}">ポストページへ</a> <!-- url_for('post')でpost関数を呼び出す -->
+
+{% endblock %}
+

@@ -1,0 +1,12 @@
+{% extends "jinja/base2.html" %}
+{% block titile %}render_template{% endblock %}
+
+{% block header %}<h1>辞書型の値を渡す</h1><{% endblock %}
+{% block content %}
+<h1>{{key}}</h1>
+<hr />
+<h2>「.」でオブジェクト内のプロパティ値を指定</h2>
+<p>{{key.temp}}は{{key.jinja}}</p>
+<h2>「[]」で表示</h2>
+<p>{{key["temp"]}}は{{key["jinja"]}}</p>
+{% endblock %}

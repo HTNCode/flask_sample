@@ -1,0 +1,21 @@
+{% extends "jinja/base2.html" %}
+{% block titile %}render_template{% endblock %}
+
+{% block header %}<h1>リスト型の値を渡す</h1><{% endblock %}
+{% block content %}
+<h1>{{users}}</h1>
+<hr />
+<h2>インデックスで取得（.）</h2>
+<ol>
+<li>{{ users.0 }}</li>
+<li>{{ users.1 }}</li>
+<li>{{ users.2 }}</li>
+</ol>
+
+<h2>インデックスで取得（[]）で表示</h2>
+<ol>
+<li>{{ users[0] }}</li>
+<li>{{ users[0] }}</li>
+<li>{{ users[0] }}</li>
+</ol>
+{% endblock %}
