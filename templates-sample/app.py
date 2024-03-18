@@ -56,6 +56,43 @@ def show_jinja_class():
     taro = Hero("太郎", 20)
     return render_template("jinja/show4.jinja2", user = taro)
 
+#　▼▼▼　ここから【制御文】　▼▼▼
+# 「商品」クラス
+class Item:
+    # コンストラクタ（初期化メソッド）
+    def __init__(self, id, name):
+        self.id = id
+        self.name = name
+    # 表示用関数
+    def __str__(self):
+        return f"商品ID:{self.id} 商品名：{self.name}"
+    
+# 繰り返し処理
+@app.route("/for_list/")
+def show_for_list():
+    item_list = [Item(1, "りんご"), Item(2, "みかん"), Item(3, "バナナ")]
+    return render_template("for_list.html", items = item_list)
+
+# 条件分岐
+@app.route("/if_detail/<int:id>")
+def show_if_detail(id):
+    item_list = [Item(1, "りんご"), Item(2, "みかん"), Item(3, "バナナ")]
+    return render_template("if_detail.html", show_id=id, items=item_list)
+
+# 条件分岐2（ルーティングを重ねてtargetを受け取り、if elseで条件分岐）
+@app.route("/if_else/")
+@app.route("/if_else/<target>")
+# target="colorless"をデフォルト値に設定
+def show_jinja_if(target="colorless"):
+    print(target)
+    return render_template("if_else.html", color=target)
+
+# フィルター
+@app.route("/filter/")
+def show_filter_block():
+    word = "pen"
+    return render_template("filter/block.html", show_word=word)
+
 # 実行
 if __name__ == "__main__":
     app.run(debug=True)

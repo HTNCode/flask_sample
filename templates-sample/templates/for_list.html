@@ -1,0 +1,16 @@
+{% block header %}
+<h1>（動的）商品一覧：画面</h1>
+{% endblock %}
+
+<tbody>
+  {% for item in items %}
+  <tr>
+    <td>
+      <a href="{{ url_for('show_if_detail', id=item.id)}}">{{ item.id }}</a>
+    </td>
+    <td>{{ item.name }}</td>
+  </tr>
+  {% endfor %}
+  <br />
+  <a href="/">戻る</a>
+</tbody>

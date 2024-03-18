@@ -1,0 +1,20 @@
+{% extends "filter/base3.html"%}
+
+{% block header%}
+<h1>フィルター：文全体</h1>
+{% endblock %}
+
+{% block content %}
+    <p>【フィルターなし】</p>
+    this is a {{ show_word }}.
+    <p>【フィルターあり】</p>
+
+    {# filter upperのupperでフィルターをかける。upperは文字列を大文字に変換するフィルター #}
+    {% filter upper %}
+    this is a {{ show_word }}.
+    {% endfilter %}
+
+    <hr />
+    
+    <a href="https://jinja.palletsprojects.com/en/3.1.x/templates/#list-of-builtin-filters">2024年3月現在のフィルター一覧</a>
+{% endblock %}
