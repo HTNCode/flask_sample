@@ -1,0 +1,9 @@
+{% extends "filter/base3.html "%}
+
+{% block header %}<h1>カスタムフィルター</h1>{% endblock %}
+
+{% block content %}
+    <p>自作フィルター：{{show_word| custom_filter}}</p>
+    <p>自作フィルター：{{show_word| custom_filter(2)}}</p>
+    <p>自作フィルター：{{show_word2| custom_filter}}</p>
+{% endblock %}
