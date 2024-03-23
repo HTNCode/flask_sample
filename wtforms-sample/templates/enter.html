@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <h1>WTForm:入力</h1>
+{% endblock %}
+
+{% block content %}
+    <!-- バリデーションチェック時にエラーが出た場合に表示。form.errorsはエラー情報を格納する辞書型のオブジェクト -->
+    <div class="error">
+        {% if form.errors %}
+            <ul>
+            === エラーメッセージ ===
+            {% for field, errors in form.errors.items() %}
+                <li>{{ field }}: {{ errors }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <!-- form.xxx()の第1引数にhtml属性を入れられる -->
+    <form method="POST" novalidate> <!-- novalidateはHTML5のバリデーションを無効にする（こうすることでwtformsのバリデーションチェックのみを動作させられる -->
+        {{ form.name.label }}{{ form.name(size=20) }}<br />
+        {{ form.age.label }}{{ form.age () }}<br />
+        {{ form.password.label }}{{ form.password(size=20) }}<br />
+        {{ form.confirm_password.label }}{{ form.confirm_password(size=20) }}<br />
+        {{ form.email.label }}{{ form.email(placeholder="xxxx@example.com") }}<br />
+        {{ form.birthday.label }}{{ form.birthday() }}<br />
+        {{ form.gender.label }}{{ form.gender() }}<br />
+        {{ form.area.label }}{{ form.area() }}<br />
+        {{ form.is_married.label }}{{ form.is_married() }}<br />
+        {{ form.note.label }}{{ form.note(style="height:100px; width:150px") }}<br />
+        {{ form.submit() }}
+    </form>
+{% endblock %}
