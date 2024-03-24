@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask-WTF</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}"> <!-- CSSファイルの読み込みをurl_for関数を使って行う -->
+</head>
+<body>
+    {% block title %}タイトル{% endblock %}
+    <hr />
+    {% block content %}コンテンツ{% endblock %}
+</body>
+</html>

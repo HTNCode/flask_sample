@@ -4,7 +4,7 @@ from wtforms.fields import (
 )
 
 # 使用するvalidatorをインポート（wtformsではバリデーションを行うためのvalidatorが用意されている）
-from wtforms.validators import DataRequired, EqualTo, Length, NumberRange, Email
+from wtforms.validators import DataRequired, EqualTo, Length, NumberRange, Email, ValidationError
 
 # ==============================
 #Formクラス
@@ -36,5 +36,14 @@ class UserInfoForm(Form): # Formクラスをwtformsから継承
     # ボタン
     submit = SubmitField("送信")
     
-    
     # 補足：xxxFieldの第一引数はラベル名、第二引数はバリデーションを指定するもの
+
+    # カスタムバリデータ
+    # 英数字と記号が含まれているかをチェックする（any関数は引数のいずれかがTrueであればTrueを返す。それをnotで囲んでいるので、意図したものに合致しない場合を示す）
+    def validate_password(self, password):
+        if not (any(c.isalpha() for c in password.data) and \
+            any(c.isdigit() for c in password.data) and \
+            any(c in "!@#$%~&*()" for c in password.data)):
+            raise ValidationError("パスワードは英数字と記号を含む必要があります")
+
+# ==============================

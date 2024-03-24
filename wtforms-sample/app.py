@@ -13,7 +13,7 @@ def show_enter():
     if request.method == "POST" and form.validate():
         return render_template("result.html", form=form) # テンプレートファイルを指定し、作成したフォームを渡す
     # POSTメソッド以外でリクエストがあった場合もしくはform.validate()がFalseの場合
-    return render_template("enter.html", form=form) # テンプレートファイルを指定し、作成したフォームを渡す
+    return render_template("enter2.html", form=form) # テンプレートファイルを指定し、作成したフォームを渡す
 
 if __name__ == "__main__":
     app.run(debug=True)

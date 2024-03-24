@@ -1,0 +1,13 @@
+{% macro render_field(field) %} <!-- render_fieldというテンプレートマクロを作成 -->
+    <dt>{{ field.label }}</dt>
+    <dd>{{ field(**kwargs)|safe }} <!-- safeフィルターを使って既にエスケープされている文字列をエスケープせずに出力することをjinja2に伝える -->
+    {% if field.errors %}
+        <ul style="color: red;">
+        {% for error in field.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    </dd>
+{% endmacro %}
+
