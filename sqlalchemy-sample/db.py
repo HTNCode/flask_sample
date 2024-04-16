@@ -13,7 +13,7 @@ db_engine = create_engine(database, echo=True) # DBに接続するためのデ�
 Base = declarative_base() # 型オブジェクトを継承したクラスを作成。このクラスを継承したクラスはテーブルとして扱うことができる
 
 # ==================
-# モデル（SQLAlchemyではデータベースのテーブルを表現するモデルクラスを定義する。そのためBaseと呼ばれる型オブジェクトを継承したクラスを作成する。モデルクラスはアプリ内でデータを表現するためのものでORMを通じてデータベースとやり取りする）
+# モデル（ORMの一つであるSQLAlchemyではデータベースのテーブルを表現するモデルクラスを定義する。そのためBaseと呼ばれる型オブジェクトを継承したクラスを作成する。モデルクラスはアプリ内でデータを表現するためのものでORMを通じてデータベースとやり取りする）
 # ==================
 class Item(Base):
     # テーブル名
@@ -57,23 +57,23 @@ session.add_all([item01, item02, item03]) # 複数のオブジェクトを一度
 session.commit()
 
 print("(4)データ参照:実行")
-item_all_list = session.query(Item).order_by(Item.id).all() # Itemモデルから全てのデータを取得し、商品IDで昇順に並べ替え
+item_all_list = session.query(Item).order_by(Item.id).all() # Itemモデルから全てのデータを取得し、商品IDで昇順に並べ替えする（クエリが使える）
 for row in item_all_list:
     print(row)
 
 print("(5)データ更新1件:実行")
-target_item = session.query(Item).filter(Item.id == 1).first() # 商品IDが1のデータを取得
+target_item = session.query(Item).filter(Item.id == 1).first() # 商品IDが1のデータを取得（クエリが使える）
 target_item.price = 500
 session.commit()
-target_item = session.query(Item).filter(Item.id == 3).first() # 商品IDが3のデータを取得
+target_item = session.query(Item).filter(Item.id == 3).first() # 商品IDが3のデータを取得（クエリが使える）
 print("確認用", target_item)
 
 print("(6)データ更新複数件:実行")
-target_item_list = session.query(Item).filter(or_(Item.id==1, Item.id==2)).all() # 商品IDが1または2のデータを取得
+target_item_list = session.query(Item).filter(or_(Item.id==1, Item.id==2)).all() # 商品IDが1または2のデータを取得（or_()はまたは）（クエリが使える）
 for target_item in target_item_list:
     target_item.price =999
 session.commit()
-item_all_list = session.query(Item).order_by(Item.id).all() # Itemモデルから全てのデータを取得し、商品IDで昇順に並べ替え
+item_all_list = session.query(Item).order_by(Item.id).all() # Itemモデルから全てのデータを取得し、商品IDで昇順に並べ替え（クエリが使える）
 print("確認")
 for row in item_all_list:
     print(row)
