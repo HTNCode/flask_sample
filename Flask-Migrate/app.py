@@ -28,6 +28,20 @@ Migrate(app, db)
 # ==================================================
 # モデル
 # ==================================================
+# # 課題
+# class Task(db.Model):
+#     # テーブル名
+#     __tablename__ = "tasks"
+    
+#     # 課題ID
+#     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     # 内容
+#     content = db.Column(db.String(200), nullable=False)
+    
+#     # 表示用関数
+#     def __str__(self):
+#         return f"課題ID:{self.id}, 内容:{self.content}"
+    
 # 課題
 class Task(db.Model):
     # テーブル名
@@ -37,11 +51,12 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     # 内容
     content = db.Column(db.String(200), nullable=False)
+    # 完了フラグ
+    is_completed = db.Column(db.Boolean, default=False) # db.BooleanでTrue/Falseを表現
     
     # 表示用関数
     def __str__(self):
-        return f"課題ID:{self.id}, 内容:{self.content}"
-    
+        return f"課題ID:{self.id}, 内容:{self.content} 完了:{self.is_completed}"
 
 # ==================================================
 # メモ
@@ -65,4 +80,23 @@ class Task(db.Model):
 # CRUD操作
 # ==================================================
 # 登録
+def insert():
+    with app.app_context():
+        print("======= 3件登録 =======")
+        # データ作成
+        print("(1)データ登録：実行")
+        task01 = Task(content="課題01")
+        task02 = Task(content="課題02")
+        task03 = Task(content="課題03")
+        # セッションの取得
+        session = db.session
+        # セッションで「課題」を登録
+        session.add_all([task01, task02, task03])
+
+# ==================================================
+# 実行
+# ==================================================
+if __name__ == "__main__":
+    insert()
+
 
